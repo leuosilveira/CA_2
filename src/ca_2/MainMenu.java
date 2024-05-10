@@ -9,5 +9,13 @@ package ca_2;
  * @author Leonardo
  */
 public interface MainMenu {
+    enum MenuOption{
+        SORT,
+        SEARCH,
+        ADD,
+        EXIT
+    }
     
+        
+   
 }

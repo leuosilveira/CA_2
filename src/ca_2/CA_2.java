@@ -6,6 +6,7 @@ package ca_2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -13,35 +14,104 @@ import java.util.List;
  */
 public class CA_2 {
 
+//    
+    private List<Team> teams;
+    
+    public CA_2(){
+        this.teams = new ArrayList<>();
+    }
+    
+    public List<Team> getTeams(){
+        return this.teams;
+    }
+    
+    public void setTeams(List<Team> teams){
+        this.teams = teams;
+    }
+            
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-    
-        System.out.println("Please, provide a file with the names to start.");
+
+        CA_2 app = new CA_2();
+        
+        
+        
+        System.out.println("Please, provide a file to start.");
 
         String myFile = Utilities.stringInput("Please insert the name of the file:");
         List<String> names = new ArrayList<>();
         Utilities.ReadAndGetNames(myFile,names);
         
+        MainMenu.MenuOption selectOption = null;
+        
+        do{
+            System.out.println("Please select an option: ");
+            System.out.println("1. Sort");
+            System.out.println("2. Search");
+            System.out.println("3. Add");
+            System.out.println("4. Exit");
+           
+            int option = Utilities.numberInput("Please select an option");
+            
+            selectOption = MainMenu.MenuOption.values()[option - 1];
+            
+            switch(selectOption){
+                
+                case SORT:
+                    Utilities.Sorting(names);
+                    Utilities.printFirstFifty(names);
+                    break;
+                    
+                case SEARCH:
+                    String name = Utilities.stringInput("Which name are you looking for? ");                    
+                    Utilities.Searching(names, name);
+                    break;
+                    
+                case ADD:
+                    System.out.println("Would you like to customize or generate random information? ");
+                    System.out.println("1. Customize");
+                    System.out.println("2. Generate Random");
+                    option = Utilities.numberInput("Please select an option");
+                    int selectedOption = option;
+                    switch (selectedOption){
+                        case 1:
+                            System.out.println("Customize:");
+                            String customName = Utilities.stringInput("Enter the full name: ");                            
+                            
+                            int staff = Utilities.numberInput("Please select an option: \n1.Player \n2.Coach ");
+                            
+                            
+                            
+                            break;
+                        
+                        
+                        case 2:
+                            System.out.println("Random");
+                            break;
+                        
+                        default:
+                            System.out.println("Invalid option! Please try again.");
+                            break;
+                    }
+                    break;
+                case EXIT:
+                    System.out.println("Exiting the application. \nSee you next time.");
+                    break;
+                    
+                default:
+                    System.out.println("Invalid option! Please try again.");
+                    break;
+            }
 
+        }   
         
-        }
+        while(selectOption != MainMenu.MenuOption.EXIT);
         
-
-
-
-//        Menu Class
-//       
+    }
         
-        
-        
-        
-    
-    
-    
-    
-    
-    
 }
+        
+
+
