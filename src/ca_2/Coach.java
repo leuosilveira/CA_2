@@ -11,12 +11,12 @@ package ca_2;
 public class Coach {
     private String name;
     private String team;
-    private String position;
+    private String type;
 
     public Coach(String name, String team, String position) {
         this.name = name;
         this.team = team;
-        this.position = position;
+        this.type = position;
     }
 
     public String getName() {
@@ -27,7 +27,20 @@ public class Coach {
         return team;
     }
 
-    public String getPosition() {
-        return position;
+    public String getType() {
+        return type;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
 }

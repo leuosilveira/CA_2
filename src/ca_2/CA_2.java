@@ -5,6 +5,7 @@
 package ca_2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,30 +13,13 @@ import java.util.Scanner;
  *
  * @author Leonardo
  */
-public class CA_2 {
-
-//    
-    private List<Team> teams;
-    
-    public CA_2(){
-        this.teams = new ArrayList<>();
-    }
-    
-    public List<Team> getTeams(){
-        return this.teams;
-    }
-    
-    public void setTeams(List<Team> teams){
-        this.teams = teams;
-    }
-            
+public class CA_2 {           
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
 
-        CA_2 app = new CA_2();
-        
+        Manager mng = new Manager();
         
         
         System.out.println("Please, provide a file to start.");

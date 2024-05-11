@@ -15,7 +15,5 @@ public interface MainMenu {
         ADD,
         EXIT
     }
-    
-        
-   
+       
 }
