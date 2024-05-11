@@ -23,6 +23,21 @@ public class Manager {
         this.players = new ArrayList<>();
         this.coaches = new ArrayList<>();
 
+        teams.add(new Team("Ireland"));
+        teams.add(new Team("France"));
+        teams.add(new Team("Wales"));
+        teams.add(new Team("South Africa"));
+        teams.add(new Team("Australia"));
+        teams.add(new Team("Scotland"));
+        teams.add(new Team("Italy"));
+        teams.add(new Team("New Zealand"));
+        teams.add(new Team("England"));
+        teams.add(new Team("Germany"));
+        teams.add(new Team("Argentina"));
+        teams.add(new Team("Spain"));
+        teams.add(new Team("Chile"));
+        teams.add(new Team("Romania"));
+        teams.add(new Team("Brazil"));
     }
     
     public List<Team> getTeams(){
@@ -32,24 +47,32 @@ public class Manager {
     public void setTeams(List<Team> teams){
         this.teams = teams;
     }
-    
-    public void addTeam(Team team){
-        this.teams.add(team);
-    }
-     
-    public void Manager(){
-        List<String> teamNames = new ArrayList<>(Arrays.asList("Ireland", "Brazil", "France"));
-        
-        
-        for(String teamName : teamNames){
-            Team newTeam = new Team(teamName);
-            teams.add(newTeam);
-            
-        }
 
-        System.out.println(teams);
-        
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
+    public void setCoaches(List<Coach> coaches) {
+        this.coaches = coaches;
     }
     
-    
+    public void listAllTeams(){
+//    This mathod will list all anumals
+//    To lis all animal we need to itereate through all avaiable animal values in tall avaible animal classes (types)
+     System.out.println("Teams are: ");
+     
+        for(Team team:teams){
+//    For all animal classes get the animals values
+            System.out.println(team.getName());
+
+        }
+    }
 }

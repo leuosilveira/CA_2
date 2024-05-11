@@ -5,9 +5,7 @@
 package ca_2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
@@ -21,6 +19,7 @@ public class CA_2 {
 
         Manager mng = new Manager();
         
+        mng.listAllTeams();
         
         System.out.println("Please, provide a file to start.");
 
