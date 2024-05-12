@@ -12,11 +12,12 @@ public class Coach {
     private String name;
     private String team;
     private String type;
+    private String[] types = {"Head Coach", "Passing Coach", "Forwards Coach", "Defensive Coordinator", "Lineout Coach", "Scrum Coach", "Referee", "Coach"};
 
-    public Coach(String name, String team, String position) {
+    public Coach(String name, String team, String type) {
         this.name = name;
         this.team = team;
-        this.type = position;
+        this.type = type;
     }
 
     public String getName() {

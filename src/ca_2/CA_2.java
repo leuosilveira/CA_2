@@ -18,9 +18,7 @@ public class CA_2 {
     public static void main(String[] args) {
 
         Manager mng = new Manager();
-        
-        mng.listAllTeams();
-        
+                
         System.out.println("Please, provide a file to start.");
 
         String myFile = Utilities.stringInput("Please insert the name of the file:");
@@ -63,8 +61,19 @@ public class CA_2 {
                             System.out.println("Customize:");
                             String customName = Utilities.stringInput("Enter the full name: ");                            
                             
-                            int staff = Utilities.numberInput("Please select an option: \n1.Player \n2.Coach ");
-                            
+                            option = Utilities.numberInput("Please select an option: \n1.Player \n2.Coach ");
+                            selectedOption = option;
+                            switch (selectedOption){
+                                case 1:
+                                    Player.printPlayerPositions();
+                                    int position = Utilities.numberInput("Please select the position of this player:");
+                                    mng.listAllTeams();
+                                    int team = Utilities.numberInput("Please select the team of this player:");
+                                    
+                                    
+                                    break;
+                                    
+                            }
                             
                             
                             break;
