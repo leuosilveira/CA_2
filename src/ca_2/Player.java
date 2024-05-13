@@ -52,6 +52,10 @@ public class Player {
     public static String[] getPositions() {
         return positions;
     }
+    
+    public static String getOnePosition(int index){
+        return positions[index];
+    }
 
     public static void setPositions(String[] positions) {
         Player.positions = positions;

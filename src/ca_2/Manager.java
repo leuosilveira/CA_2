@@ -5,7 +5,6 @@
 package ca_2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,7 +13,7 @@ import java.util.List;
  */
 public class Manager {
        
-    private List<Team> teams;
+    private static List<Team> teams;
     private List<Player> players;
     private List<Coach> coaches; 
     
@@ -37,6 +36,10 @@ public class Manager {
     
     public List<Team> getTeams(){
         return this.teams;
+    }
+    
+    public String getOneTeam(int index){
+        return teams.get(index).getName();
     }
     
     public void setTeams(List<Team> teams){
@@ -69,18 +72,15 @@ public class Manager {
     
     public void listAllTeams(){
 
-     System.out.println("Teams are: ");
-     
+        int count = 0;
         for(Team team:teams){
 
-            System.out.println(team+"."+team.getName());
-
+            System.out.println(count+"."+team.getName());
+            count++;
         }
     }
     
     public void listAllPlayers(){
-
-     System.out.println("Players are: ");
      
         for(Player player:players){
 
@@ -99,4 +99,9 @@ public class Manager {
 
         }
     }
+    
+    
+    
+    
+
 }

@@ -67,20 +67,43 @@ public class CA_2 {
                                 case 1:
                                     Player.printPlayerPositions();
                                     int position = Utilities.numberInput("Please select the position of this player:");
+                                    String playerPosition = Player.getOnePosition(position);
+                                    System.out.println(playerPosition);
                                     mng.listAllTeams();
-                                    int team = Utilities.numberInput("Please select the team of this player:");
-                                    
-                                    
+                                    int teamIndex = Utilities.numberInput("Please select the team of this player:");
+                                    String playerTeam = mng.getOneTeam(teamIndex);
+                                    Player newPlayer = new Player(customName,playerTeam,playerPosition);
+                                    System.out.println(newPlayer.getName() + " was added as a " + newPlayer.getPosition() + " in the " + newPlayer.getTeam() + " club, succesfully!");
+                                    mng.addPlayer(newPlayer);
                                     break;
-                                    
+                                case 2:
+                                    Coach.printCoachesTypes();
+                                    int type = Utilities.numberInput("Please select the type of this coach:");
+                                    String coachType = Coach.getOneType(type);
+                                    mng.listAllTeams();
+                                    teamIndex = Utilities.numberInput("Please select the team of this player:");
+                                    String coachTeam = mng.getOneTeam(teamIndex);
+                                    Coach newCoach = new Coach(customName,coachTeam,coachType);
+                                    System.out.println(newCoach.getName() + " was added as a " + newCoach.getType() + " in the " + newCoach.getTeam() + " club, succesfully!");
+                                    mng.addCoach(newCoach);
+                                    break;
+                            default:
+                                System.out.println("Invalid option! Please try again.");
+                                break;
                             }
-                            
-                            
                             break;
-                        
+
                         
                         case 2:
                             System.out.println("Random");
+                            option = Utilities.numberInput("Please select an option: \n1.Player \n2.Coach ");
+                            selectedOption = option;
+                            if(option == 1){
+                                Utilities.generateRandomPlayer(names,mng.getTeams(),Player.getPositions());
+                            }else if(option == 2){
+                                Utilities.generateRandomCoach(names, mng.getTeams(),Coach.getTypes());
+                            }
+
                             break;
                         
                         default:

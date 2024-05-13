@@ -39,6 +39,39 @@ public class Utilities {
         
     }
 
+    public static void generateRandomPlayer(List<String> namesList, List<Team> teams, String[] positions ){
+        Manager mng = new Manager();
+        
+        int randomName = (int)(Math.random()*namesList.size());
+        int randomTeamIndex = (int)(Math.random()*teams.size());
+        int randomPosition = (int)(Math.random()*positions.length);
+        
+        String rndName = namesList.get(randomName);
+        String rndTeam = mng.getOneTeam(randomTeamIndex);
+        String rndPosition = Player.getOnePosition(randomPosition);
+        
+        Player newRandomPlayer = new Player(rndName, rndTeam, rndPosition);
+        
+        System.out.println(newRandomPlayer.getName() + " was added as a " + newRandomPlayer.getPosition() + " in the " + newRandomPlayer.getTeam() + " club, succesfully!");
+    }
+    
+    
+    public static void generateRandomCoach(List<String> namesList, List<Team> teams, String[] types ){
+        Manager mng = new Manager();
+        
+        int randomName = (int)(Math.random()*namesList.size());
+        int randomTeamIndex = (int)(Math.random()*teams.size());
+        int randomType = (int)(Math.random()*types.length);
+        
+        String rndName = namesList.get(randomName);
+        String rndTeam = mng.getOneTeam(randomTeamIndex);
+        String rndType = Coach.getOneType(randomType);
+        
+        Coach newRandomCoach = new Coach(rndName, rndTeam, rndType);
+        
+        System.out.println(newRandomCoach.getName() + " was added as a " + newRandomCoach.getType() + " in the " + newRandomCoach.getTeam() + " club, succesfully!");
+    }
+    
 
     public static String stringInput(String prompt){
 
@@ -108,7 +141,7 @@ public class Utilities {
     
     
     
-        public static void Searching(List<String> list, String key) {
+    public static void Searching(List<String> list, String key) {
         
   
         Collections.sort(list);
@@ -130,10 +163,10 @@ public class Utilities {
             }
             middle = (leftPointer + rightPointer) / 2;
         }        
-        System.out.println(key + " is not found in the Library Collection.");
+        System.out.println(key + " is not found in the Data Base.");
     }
     
-    
+
     
     
     
