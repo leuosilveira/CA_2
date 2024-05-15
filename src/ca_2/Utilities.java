@@ -6,6 +6,7 @@ package ca_2;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -17,26 +18,21 @@ import java.util.Scanner;
 public class Utilities {
 
     
-    public static void ReadAndGetNames(String file, List<String> names){ 
-          
-        
+    public static void ReadAndGetNames(String file, List<String> names){         
         try{
             BufferedReader collection = new BufferedReader(new FileReader(file));
-            System.out.println("File read successfully!");
-                  
+            System.out.println("File read successfully!");   
             String line;
             String[] lineParts;
             while((line = collection.readLine()) != null){
                 lineParts = line.split(",");  
                 names.add(lineParts[1].toUpperCase() + " " + lineParts[2].toUpperCase());
             }
-    
         }
 //        Error handling if file not found
         catch (Exception e) {
             System.out.println("File not found\n");   
-        }
-        
+        } 
     }
 
     public static void generateRandomPlayer(List<String> namesList, List<Team> teams, String[] positions ){
@@ -121,14 +117,11 @@ public class Utilities {
                     String tempBookName = list.get(i - 1);
                     list.set(i - 1, list.get(i));
                     list.set(i, tempBookName);
-                                     
-                    
+                       
                     swapped = true;
                 }
             }       
-        } while(swapped);   
-        
-
+        } while(swapped);           
     }
     
     
@@ -164,10 +157,14 @@ public class Utilities {
             middle = (leftPointer + rightPointer) / 2;
         }        
         System.out.println(key + " is not found in the Data Base.");
+    } 
+    
+    
+    public static void printSortedList(List<String> namesList){
+        List <String> list = namesList;
+        Utilities.Sorting(namesList);
+        for(int i =0;i<namesList.size();i++){
+            System.out.println(namesList.get(i));
+        }
     }
-    
-
-    
-    
-    
 }

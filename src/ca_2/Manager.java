@@ -14,8 +14,8 @@ import java.util.List;
 public class Manager {
        
     private static List<Team> teams;
-    private List<Player> players;
-    private List<Coach> coaches; 
+    private static List<Player> players;
+    private static List<Coach> coaches; 
     
     public Manager(){
         this.teams = new ArrayList<>();
@@ -100,8 +100,36 @@ public class Manager {
         }
     }
     
-    
-    
-    
+    public static List<String> listAllTeamsNames(){
+        
+        List<String> teamsNames = new ArrayList<>();
+        for(Team team:teams){
 
+            teamsNames.add(team.getName());
+        }
+        
+        return teamsNames;
+    }
+    
+    public static List<String> listAllCoachesNames(){
+        
+        List<String> coachesNames = new ArrayList<>();
+        for(Coach coach:coaches){
+
+            coachesNames.add(coach.getName());
+        }
+        
+        return coachesNames;
+    }
+    
+    public static List<String> listAllPlayersNames(){
+        
+        List<String> playersNames = new ArrayList<>();
+        for(Player player:players){
+
+            playersNames.add(player.getName());
+        }
+        
+        return playersNames;
+    }
 }
