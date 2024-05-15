@@ -36,18 +36,18 @@ public class Utilities {
 
     public static void generateRandomPlayer(List<String> namesList, List<Team> teams, String[] positions ){
         Manager mng = new Manager();
+                
+        String rndName = namesList.get((int)(Math.random()*namesList.size()));
+        String rndTeam = mng.getOneTeam((int)(Math.random()*teams.size()));
+        String rndPosition = Player.getOnePosition((int)(Math.random()*positions.length));
         
-        int randomName = (int)(Math.random()*namesList.size());
-        int randomTeamIndex = (int)(Math.random()*teams.size());
-        int randomPosition = (int)(Math.random()*positions.length);
+        if(mng.listAllPlayersNames().contains(rndName)){
+            generateRandomPlayer(namesList, teams, positions);
+        }else{
+            Player newRandomPlayer = new Player(rndName, rndTeam, rndPosition);
         
-        String rndName = namesList.get(randomName);
-        String rndTeam = mng.getOneTeam(randomTeamIndex);
-        String rndPosition = Player.getOnePosition(randomPosition);
-        
-        Player newRandomPlayer = new Player(rndName, rndTeam, rndPosition);
-        
-        System.out.println(newRandomPlayer.getName() + " was added as a " + newRandomPlayer.getPosition() + " in the " + newRandomPlayer.getTeam() + " club, succesfully!");
+            System.out.println(newRandomPlayer.getName() + " was added as a " + newRandomPlayer.getPosition() + " in the " + newRandomPlayer.getTeam() + " club, succesfully!");
+        }
     }
     
     
