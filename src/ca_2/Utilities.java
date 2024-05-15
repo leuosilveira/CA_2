@@ -6,7 +6,6 @@ package ca_2;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -55,17 +54,19 @@ public class Utilities {
     public static void generateRandomCoach(List<String> namesList, List<Team> teams, String[] types ){
         Manager mng = new Manager();
         
-        int randomName = (int)(Math.random()*namesList.size());
-        int randomTeamIndex = (int)(Math.random()*teams.size());
-        int randomType = (int)(Math.random()*types.length);
+        String rndName = namesList.get((int)(Math.random()*namesList.size()));
+        String rndTeam = mng.getOneTeam((int)(Math.random()*teams.size()));
+        String rndType = Coach.getOneType((int)(Math.random()*types.length));
         
-        String rndName = namesList.get(randomName);
-        String rndTeam = mng.getOneTeam(randomTeamIndex);
-        String rndType = Coach.getOneType(randomType);
+       if(mng.listAllCoachesNames().contains(rndName)){
+           generateRandomCoach(namesList, teams, types);
+       }else{
+           Coach newRandomCoach = new Coach(rndName, rndTeam, rndType);
+       
+            mng.addCoach(newRandomCoach);
         
-        Coach newRandomCoach = new Coach(rndName, rndTeam, rndType);
-        
-        System.out.println(newRandomCoach.getName() + " was added as a " + newRandomCoach.getType() + " in the " + newRandomCoach.getTeam() + " club, succesfully!");
+            System.out.println(newRandomCoach.getName() + " was added as a " + newRandomCoach.getType() + " in the " + newRandomCoach.getTeam() + " club, succesfully!");
+       }
     }
     
 
@@ -114,9 +115,9 @@ public class Utilities {
             swapped = false;
             for (int i = 1; i < n; i++) {
                 if (list.get(i - 1).compareTo(list.get(i)) > 0) {
-                    String tempBookName = list.get(i - 1);
+                    String temName = list.get(i - 1);
                     list.set(i - 1, list.get(i));
-                    list.set(i, tempBookName);
+                    list.set(i, temName);
                        
                     swapped = true;
                 }
@@ -136,7 +137,6 @@ public class Utilities {
     
     public static void Searching(List<String> list, String key) {
         
-  
         Collections.sort(list);
 
         int middle = list.size() / 2;
@@ -161,7 +161,6 @@ public class Utilities {
     
     
     public static void printSortedList(List<String> namesList){
-        List <String> list = namesList;
         Utilities.Sorting(namesList);
         for(int i =0;i<namesList.size();i++){
             System.out.println(namesList.get(i));
