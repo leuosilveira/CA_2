@@ -11,12 +11,11 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- *
- * @author Leonardo
+ * Utility class containing various helper methods for the rugby club management system.
  */
 public class Utilities {
 
-    
+    // Method to read data from a file and extract names
     public static void ReadAndGetNames(String file, List<String> names){         
         try{
             BufferedReader collection = new BufferedReader(new FileReader(file));
@@ -28,12 +27,13 @@ public class Utilities {
                 names.add(lineParts[1].toUpperCase() + " " + lineParts[2].toUpperCase());
             }
         }
-//        Error handling if file not found
+        // Error handling if file not found
         catch (Exception e) {
             System.out.println("File not found\n");   
         } 
     }
 
+    // Method to generate a random player
     public static void generateRandomPlayer(List<String> namesList, List<Team> teams, String[] positions ){
         Manager mng = new Manager();
                 
@@ -41,16 +41,17 @@ public class Utilities {
         String rndTeam = mng.getOneTeam((int)(Math.random()*teams.size()));
         String rndPosition = Player.getOnePosition((int)(Math.random()*positions.length));
         
+        // Check if the randomly generated name is already in use
         if(mng.listAllPlayersNames().contains(rndName)){
             generateRandomPlayer(namesList, teams, positions);
-        }else{
+        } else {
             Player newRandomPlayer = new Player(rndName, rndTeam, rndPosition);
         
-            System.out.println(newRandomPlayer.getName() + " was added as a " + newRandomPlayer.getPosition() + " in the " + newRandomPlayer.getTeam() + " club, succesfully!");
+            System.out.println(newRandomPlayer.getName() + " was added as a " + newRandomPlayer.getPosition() + " in the " + newRandomPlayer.getTeam() + " club, successfully!");
         }
     }
     
-    
+    // Method to generate a random coach
     public static void generateRandomCoach(List<String> namesList, List<Team> teams, String[] types ){
         Manager mng = new Manager();
         
@@ -58,57 +59,64 @@ public class Utilities {
         String rndTeam = mng.getOneTeam((int)(Math.random()*teams.size()));
         String rndType = Coach.getOneType((int)(Math.random()*types.length));
         
-       if(mng.listAllCoachesNames().contains(rndName)){
-           generateRandomCoach(namesList, teams, types);
-       }else{
-           Coach newRandomCoach = new Coach(rndName, rndTeam, rndType);
+        // Check if the randomly generated name is already in use
+        if(mng.listAllCoachesNames().contains(rndName)){
+            generateRandomCoach(namesList, teams, types);
+        } else {
+            Coach newRandomCoach = new Coach(rndName, rndTeam, rndType);
        
             mng.addCoach(newRandomCoach);
         
-            System.out.println(newRandomCoach.getName() + " was added as a " + newRandomCoach.getType() + " in the " + newRandomCoach.getTeam() + " club, succesfully!");
-       }
+            System.out.println(newRandomCoach.getName() + " was added as a " + newRandomCoach.getType() + " in the " + newRandomCoach.getTeam() + " club, successfully!");
+        }
     }
-    
 
-    public static String stringInput(String prompt){
-
+    // Method to take a string input from the user
+    public static String stringInput(String prompt) {
         Scanner myStringInput = new Scanner(System.in);
         String userStringInput;
 
-        do{
+        do {
             System.out.println(prompt);
             System.out.println("(Type here)");
 
             userStringInput = myStringInput.nextLine();
-            userStringInput = userStringInput.trim().toUpperCase();
+            userStringInput = userStringInput != null ? userStringInput.trim().toUpperCase() : "";
 
-        }while (userStringInput == "");
+            if (userStringInput.isEmpty()) {
+                System.out.println("Invalid input! Please enter a non-empty string.");
+            }
+        } while (userStringInput.isEmpty());
 
         return userStringInput;
     }
 
-    public static int numberInput(String prompt){
-
+    // Method to take a number input from the user
+    public static int numberInput(String prompt, int min, int max) {
         Scanner myNumberInput = new Scanner(System.in);
-        String userNumber;
+        int userNumber = 0;
         
-        do{
+        do {
             System.out.println(prompt);
-            System.out.println("(Please enter a NUMBER ONLY)");
+            System.out.printf("(Please enter a number between %d and %d)%n", min, max);
+            String userInput = myNumberInput.nextLine().trim();
             
-            userNumber = myNumberInput.nextLine();
-            userNumber = userNumber.trim();
-            
-        }while (!userNumber.matches("-?\\d+"));
+            try {
+                userNumber = Integer.parseInt(userInput);
+                if (userNumber < min || userNumber > max) {
+                    System.out.printf("Invalid input! Please enter a number between %d and %d.%n", min, max);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid number.");
+            }
+        } while (userNumber < min || userNumber > max);
         
-        return Integer.parseInt(userNumber);
+        return userNumber;
     }
 
-    
+    // Method to sort a list of strings
     public static void Sorting(List<String> list){
-
         int n = list.size();
-
         boolean swapped;
 
         do {
@@ -125,18 +133,15 @@ public class Utilities {
         } while(swapped);           
     }
     
-    
+    // Method to print the first fifty elements of a list that we use to print the elements from the club_form
     public static void printFirstFifty(List<String> list){
-         for (int count = 0; count < 50;count++) {
-                System.out.println(list.get(count));                
+        for (int count = 0; count < 50; count++) {
+            System.out.println(list.get(count));                
         }
-         
-     }
+    }
     
-    
-    
+    // Method to search for a key in a sorted list
     public static void Searching(List<String> list, String key) {
-        
         Collections.sort(list);
 
         int middle = list.size() / 2;
@@ -151,7 +156,6 @@ public class Utilities {
                 rightPointer = middle - 1;
             } else {
                 System.out.println(key + " is found at index position " + middle);
-
                 return;
             }
             middle = (leftPointer + rightPointer) / 2;
@@ -159,10 +163,10 @@ public class Utilities {
         System.out.println(key + " is not found in the Data Base.");
     } 
     
-    
+    // Method to print a sorted list
     public static void printSortedList(List<String> namesList){
         Utilities.Sorting(namesList);
-        for(int i =0;i<namesList.size();i++){
+        for(int i = 0; i < namesList.size(); i++){
             System.out.println(namesList.get(i));
         }
     }

@@ -28,7 +28,7 @@ public class CA_2 {
         String myFile = Utilities.stringInput("Please insert the name of the file:");
         System.out.println("----------------------------------------------------------------------------------------");
         
-        // Create a list to store names
+        // Create a list to store the names that we get from the club_form file
         List<String> names = new ArrayList<>();
         
         // Read names from the file
@@ -43,7 +43,7 @@ public class CA_2 {
             System.out.println("Please select an option: \n1. Sort \n2. Search \n3. Add \n4. Exit");
            
             // Get user's choice
-            int option = Utilities.numberInput("Please select an option");
+            int option = Utilities.numberInput("Please select an option", 1, 4);
             
             // Convert user's choice to MenuOption enum
             selectOption = MainMenu.MenuOption.values()[option - 1];
@@ -52,8 +52,8 @@ public class CA_2 {
             switch(selectOption){
                 
                 case SORT:
-                    // Sort menu
-                    option = Utilities.numberInput("Please select an option to be displayed: \n1.Teams \n2.Coaches \n3.Players \n4.Names Dataset \n5.Exit");
+                    // Sort menu with 4 choices and a exit
+                    option = Utilities.numberInput("Please select an option to be displayed: \n1.Teams \n2.Coaches \n3.Players \n4.Names Dataset \n5.Exit", 1, 5);
                     int selectedOption = option;
                     switch(selectedOption){
                         case 1:
@@ -75,7 +75,7 @@ public class CA_2 {
                         break;
                         
                         case 4:
-                            // Sort and print names dataset
+                            // Sort and print names from the dataset club_form
                             Utilities.Sorting(names);
                             Utilities.printFirstFifty(names);
                             System.out.println("----------------------------------------------------------------------------------------");
@@ -98,20 +98,20 @@ public class CA_2 {
                 case SEARCH:
                     // Search menu
                     String name = Utilities.stringInput("Which name are you looking for? ");                    
-                    Utilities.Sorting(names);
                     Utilities.Searching(names, name);
+                    // Even if the program find the name or not you can add this name as a player or coach
                     System.out.println("----------------------------------------------------------------------------------------");
                     System.out.println("Would you like to add this person as a club staff? ");
-                    option = Utilities.numberInput("Please select an option: \n1.Yes, as a Player \n2.Yes, as a Coach \n3.No, thanks");
+                    option = Utilities.numberInput("Please select an option: \n1.Yes, as a Player \n2.Yes, as a Coach \n3.No, thanks", 0, 3);
                     selectedOption = option;
                     switch (selectedOption){
                         case 1:
-                            // Add as player
+                            // Adding as player with 2 attributes (position and team)
                             Player.printPlayerPositions();
-                            int position = Utilities.numberInput("Please select the position of this player:");
+                            int position = Utilities.numberInput("Please select the position of this player:", 0, 9);
                             String playerPosition = Player.getOnePosition(position);
                             mng.listAllTeams();
-                            int teamIndex = Utilities.numberInput("Please select the team of this player:");
+                            int teamIndex = Utilities.numberInput("Please select the team of this player:", 0, 9);
                             String playerTeam = mng.getOneTeam(teamIndex);
                             Player newPlayer = new Player(name,playerTeam,playerPosition);
                             System.out.println(newPlayer.getName() + " was added as a " + newPlayer.getPosition() + " in the " + newPlayer.getTeam() + " club, succesfully!");
@@ -120,12 +120,12 @@ public class CA_2 {
                         break;
                         
                         case 2:
-                            // Add as coach
+                            // Adding as coach with two attributes (type and team)
                             Coach.printCoachesTypes();
-                            int type = Utilities.numberInput("Please select the type of this coach:");
+                            int type = Utilities.numberInput("Please select the type of this coach:", 0, 8);
                             String coachType = Coach.getOneType(type);
                             mng.listAllTeams();
-                            teamIndex = Utilities.numberInput("Please select the team of this player:");
+                            teamIndex = Utilities.numberInput("Please select the team of this player:", 0, 9);
                             String coachTeam = mng.getOneTeam(teamIndex);
                             Coach newCoach = new Coach(name,coachTeam,coachType);
                             System.out.println(newCoach.getName() + " was added as a " + newCoach.getType() + " in the " + newCoach.getTeam() + " club, succesfully!");
@@ -134,7 +134,7 @@ public class CA_2 {
                         break;
                         
                         case 3:
-                            // No, thanks
+                            // Exit option
                             System.out.println("Ok!");
                             System.out.println("----------------------------------------------------------------------------------------");
                         break;
@@ -150,7 +150,7 @@ public class CA_2 {
                 case ADD:
                     // Add menu
                     System.out.println("Would you like to customize or generate random information? \n1. Customize \n2. Generate Random \n3. Exit" );
-                    option = Utilities.numberInput("Please select an option");
+                    option = Utilities.numberInput("Please select an option", 1, 3);
                     System.out.println("----------------------------------------------------------------------------------------");
                     selectedOption = option;
                     switch (selectedOption){
@@ -158,18 +158,18 @@ public class CA_2 {
                             // Customize option
                             System.out.println("Customize:");
                             String customName = Utilities.stringInput("Enter the full name: ");                            
-                            
-                            option = Utilities.numberInput("Please select an option: \n1.Player \n2.Coach ");
+                            // option to add an player or coach
+                            option = Utilities.numberInput("Please select an option: \n1.Player \n2.Coach ", 1, 2);
                             selectedOption = option;
                             switch (selectedOption){
                                 case 1:
-                                    // Customize player
+                                    // Customize player with 2 attributes (position and team)
                                     Player.printPlayerPositions();
-                                    int position = Utilities.numberInput("Please select the position of this player:");
+                                    int position = Utilities.numberInput("Please select the position of this player:", 0, 9);
                                     String playerPosition = Player.getOnePosition(position);
                                     System.out.println(playerPosition);
                                     mng.listAllTeams();
-                                    int teamIndex = Utilities.numberInput("Please select the team of this player:");
+                                    int teamIndex = Utilities.numberInput("Please select the team of this player:",0 , 9);
                                     String playerTeam = mng.getOneTeam(teamIndex);
                                     Player newPlayer = new Player(customName,playerTeam,playerPosition);
                                     System.out.println(newPlayer.getName() + " was added as a " + newPlayer.getPosition() + " in the " + newPlayer.getTeam() + " club, succesfully!");
@@ -178,12 +178,12 @@ public class CA_2 {
                                 break;
                                 
                                 case 2:
-                                    // Customize coach
+                                    // Customize coach with 2 attibute (type and team)
                                     Coach.printCoachesTypes();
-                                    int type = Utilities.numberInput("Please select the type of this coach:");
+                                    int type = Utilities.numberInput("Please select the type of this coach:", 0, 7);
                                     String coachType = Coach.getOneType(type);
                                     mng.listAllTeams();
-                                    teamIndex = Utilities.numberInput("Please select the team of this player:");
+                                    teamIndex = Utilities.numberInput("Please select the team of this player:", 0, 9);
                                     String coachTeam = mng.getOneTeam(teamIndex);
                                     Coach newCoach = new Coach(customName,coachTeam,coachType);
                                     System.out.println(newCoach.getName() + " was added as a " + newCoach.getType() + " in the " + newCoach.getTeam() + " club, succesfully!");
@@ -207,7 +207,7 @@ public class CA_2 {
                         case 2:
                             // Generate random option
                             System.out.println("Random");
-                            option = Utilities.numberInput("Please select an option: \n1.Player \n2.Coach ");
+                            option = Utilities.numberInput("Please select an option: \n1.Player \n2.Coach ", 1, 3);
                             selectedOption = option;
                             switch(selectedOption){
                                 case 1:

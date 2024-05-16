@@ -7,24 +7,26 @@ package ca_2;
 import java.util.List;
 
 /**
- *
- * @author Leonardo
+ * Represents a rugby player.
  */
 public class Player {
     
+    // Player attributes
     private String name;
     private String team;
     private String position;
-    private static String[] positions = {"Full-back", "Wing", "Centre", "Fly-half", "Scrum-half", "Number Eight", "Flanker", "Lock/Second Row", "Hooker", "Loosehead and Tighthead Prop"}; 
+    
+    // Array of possible player positions
+    private static final String[] positions = {"Full-back", "Wing", "Centre", "Fly-half", "Scrum-half", "Number Eight", "Flanker", "Lock/Second Row", "Hooker", "Loosehead and Tighthead Prop"}; 
 
-
-
+    // Constructor to initialize a player with a name, team, and position
     public Player(String name, String team, String position) {
         this.name = name;
         this.team = team;
         this.position = position;
     }
 
+    // Getter methods
     public String getName() {
         return name;
     }
@@ -37,6 +39,7 @@ public class Player {
         return position;
     }
 
+    // Setter methods
     public void setName(String name) {
         this.name = name;
     }
@@ -49,18 +52,17 @@ public class Player {
         this.position = position;
     }
     
+    // Getter for the array of possible positions
     public static String[] getPositions() {
         return positions;
     }
     
+    // Getter for a specific position by index
     public static String getOnePosition(int index){
         return positions[index];
     }
-
-    public static void setPositions(String[] positions) {
-        Player.positions = positions;
-    }
     
+    // Method to print all player positions
     public static void printPlayerPositions(){
         for(int i = 0; i < positions.length;i++){
             System.out.println(i + "." + positions[i]);

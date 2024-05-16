@@ -5,22 +5,26 @@
 package ca_2;
 
 /**
- *
- * @author Leonardo
+ * Represents a rugby coach.
  */
 public class Coach {
+    
+    // Coach attributes
     private String name;
     private String team;
     private String type;
-    private static String[] types = {"Head Coach", "Passing Coach", "Forwards Coach", "Defensive Coordinator", "Lineout Coach", "Scrum Coach", "Referee", "Coach"};
+    
+    // Array of possible coach types
+    private static final String[] types = {"Head Coach", "Passing Coach", "Forwards Coach", "Defensive Coordinator", "Lineout Coach", "Scrum Coach", "Referee", "Coach"};
 
-
+    // Constructor to initialize a coach with a name, team, and type
     public Coach(String name, String team, String type) {
         this.name = name;
         this.team = team;
         this.type = type;
     }
 
+    // Getter methods
     public String getName() {
         return name;
     }
@@ -33,6 +37,7 @@ public class Coach {
         return type;
     }
 
+    // Setter methods
     public void setName(String name) {
         this.name = name;
     }
@@ -45,18 +50,17 @@ public class Coach {
         this.type = type;
     }
     
+    // Getter for the array of possible coach types
     public static String[] getTypes() {
         return types;
-    }
-
-    public void setTypes(String[] types) {
-        this.types = types;
-    }    
+    } 
     
+    // Getter for a specific coach type by index
     public static String getOneType(int index){
         return types[index];
     }
     
+    // Method to print all coach types
     public static void printCoachesTypes(){
         for(int i = 0; i < types.length;i++){
             System.out.println(i + "." + types[i]);

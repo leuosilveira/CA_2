@@ -8,6 +8,8 @@ package ca_2;
  *
  * @author Leonardo
  */
+
+//Main menu with enum
 public interface MainMenu {
     enum MenuOption{
         SORT,
