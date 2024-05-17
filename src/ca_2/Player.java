@@ -16,7 +16,7 @@ public class Player {
     private String team;
     private String position;
     
-    // Array of possible player positions
+    // Array of possible player positions, this is a final attribute because it will never change.
     private static final String[] positions = {"Full-back", "Wing", "Centre", "Fly-half", "Scrum-half", "Number Eight", "Flanker", "Lock/Second Row", "Hooker", "Loosehead and Tighthead Prop"}; 
 
     // Constructor to initialize a player with a name, team, and position

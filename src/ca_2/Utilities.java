@@ -6,7 +6,9 @@ package ca_2;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -141,7 +143,7 @@ public class Utilities {
     }
     
     // Method to search for a key in a sorted list
-    public static void Searching(List<String> list, String key) {
+    public static String Searching(List<String> list, String key) {
         Collections.sort(list);
 
         int middle = list.size() / 2;
@@ -155,12 +157,13 @@ public class Utilities {
             } else if (comparison > 0) {
                 rightPointer = middle - 1;
             } else {
-                System.out.println(key + " is found at index position " + middle);
-                return;
+                //System.out.println(key + " is found at index position " + middle);
+                return key + "is found at index position " + middle;
             }
             middle = (leftPointer + rightPointer) / 2;
         }        
-        System.out.println(key + " is not found in the Data Base.");
+        //System.out.println(key + " is not found in the Data Base.");
+        return key + "is not found in the Data Base.";
     } 
     
     // Method to print a sorted list
@@ -170,4 +173,87 @@ public class Utilities {
             System.out.println(namesList.get(i));
         }
     }
+
+
+    //UNITS TESTS 
+    
+    // Unit Test 1: Test addPlayer method
+    public void testAddPlayer() {
+        Manager mng = new Manager();
+        Player player = new Player("John Doe", "Ireland", "Fly-half");
+        mng.addPlayer(player);
+
+        // Check if the player is added to the manager's player list
+        if (!mng.getPlayers().contains(player)) {
+            throw new AssertionError("Player was not added to the list.");
+        } else {
+            System.out.println("testAddPlayer passed.");
+        }
+    }
+    
+    // Unit Test 2: Test generateRandomPlayer method
+    public void testGenerateRandomPlayer() {
+        Manager mng = new Manager();
+        List<String> names = Arrays.asList("John Doe", "Jane Smith", "Alex Johnson");
+        List<Team> teams = new ArrayList<>(Arrays.asList(new Team("Ireland"), new Team("France")));
+        String[] positions = Player.getPositions();
+        Utilities.generateRandomPlayer(names, teams, positions);
+
+        // Check if the player list is not empty after generating a player
+        if (mng.getPlayers().isEmpty()) {
+            throw new AssertionError("Player list is empty after generating a random player.");
+        } else {
+            System.out.println("testGenerateRandomPlayer passed.");
+        }
+    }
+    
+    // Unit Test 3: Test searching method
+    public void testSearchPlayer() {
+        List<String> names = Arrays.asList("JOHN DOE", "JANE SMITH");
+        String result = Utilities.Searching(names, "JOHN DOE");
+
+        // Check if the search result matches the expected string
+        String expected = "JOHN DOE is found at index position 0";
+        if (!result.equals(expected)) {
+            throw new AssertionError("Search result does not match expected value. Expected: " + expected + ", but got: " + result);
+        } else {
+            System.out.println("testSearchPlayer passed.");
+        }
+    }
+
+    // Unit Test 4: Retrieving All Players
+    public void testAddPlayers() {
+        Manager mng = new Manager();
+        Player player1 = new Player("John Doe", "Ireland", "Fly-half");
+        Player player2 = new Player("Jane Smith", "France", "Wing");
+        mng.addPlayer(player1);
+        mng.addPlayer(player2);
+
+        // Check if the list contains both players
+        List<Player> players = mng.getPlayers();
+        if (!players.contains(player1) || !players.contains(player2)) {
+            throw new AssertionError("Not all players were retrieved.");
+        } else {
+            System.out.println("testAddPlayers passed.");
+        }
+    }
+    
+    // Unit Test 5: Retrieving All Coaches
+    public void testAddCoaches() {
+        Manager mng = new Manager();
+        Coach coach1 = new Coach("Alice Brown", "Ireland", "Head Coach");
+        Coach coach2 = new Coach("Bob White", "France", "Assistant Coach");
+        mng.addCoach(coach1);
+        mng.addCoach(coach2);
+
+        // Check if the list contains both coaches
+        List<Coach> coaches = mng.getCoaches();
+        if (!coaches.contains(coach1) || !coaches.contains(coach2)) {
+            throw new AssertionError("Not all coaches were retrieved.");
+        } else {
+            System.out.println("testAddCoaches passed.");
+        }
+    }
+    
+    
 }

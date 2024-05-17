@@ -98,7 +98,8 @@ public class CA_2 {
                 case SEARCH:
                     // Search menu
                     String name = Utilities.stringInput("Which name are you looking for? ");                    
-                    Utilities.Searching(names, name);
+                    String searchingName = Utilities.Searching(names, name);
+                    System.out.println(searchingName);
                     // Even if the program find the name or not you can add this name as a player or coach
                     System.out.println("----------------------------------------------------------------------------------------");
                     System.out.println("Would you like to add this person as a club staff? ");
@@ -205,7 +206,7 @@ public class CA_2 {
 
                         
                         case 2:
-                            // Generate random option
+                            // Generate random data option
                             System.out.println("Random");
                             option = Utilities.numberInput("Please select an option: \n1.Player \n2.Coach ", 1, 3);
                             selectedOption = option;

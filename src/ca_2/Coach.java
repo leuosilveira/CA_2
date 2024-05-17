@@ -14,7 +14,7 @@ public class Coach {
     private String team;
     private String type;
     
-    // Array of possible coach types
+    // Array of possible coach types, this is a final attribute because it will never change.
     private static final String[] types = {"Head Coach", "Passing Coach", "Forwards Coach", "Defensive Coordinator", "Lineout Coach", "Scrum Coach", "Referee", "Coach"};
 
     // Constructor to initialize a coach with a name, team, and type
